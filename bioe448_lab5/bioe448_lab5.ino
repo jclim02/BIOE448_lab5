@@ -3,8 +3,8 @@
 // BLEByteCharacteristic readChar("2A57", BLERead);
 // BLEByteCharacteristic writeChar("2A58", BLEWrite);
 
-const int trigPin = 11;
-const int echoPin = 12;
+const int trigPin = 8;
+const int echoPin = 10;
 long duration;
 int distanceCm, distanceInch;
 
@@ -60,15 +60,15 @@ void loop() {
   Serial.print(distanceInch);
   Serial.println(" in");
 
-  //LED feedback for distance
-    if (distanceInch > 10) {
-    digitalWrite(3, HIGH);
-    digitalWrite(4, LOW);
-  } 
-  else {
-    digitalWrite(4, HIGH);
-    digitalWrite(3, LOW);   
-  }
+  // //LED feedback for distance
+  //   if (distanceInch > 10) {
+  //   digitalWrite(3, HIGH);
+  //   digitalWrite(4, LOW);
+  // } 
+  // else {
+  //   digitalWrite(4, HIGH);
+  //   digitalWrite(3, LOW);   
+  // }
 
   delay(1000);
 
