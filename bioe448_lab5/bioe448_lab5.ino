@@ -26,7 +26,7 @@ void setup() {
     while(1);
   }
 
-  BLE.setDeviceName("VJP");
+  BLE.setLocalName("VJP");
   BLE.setAdvertisedService(newService);
   newService.addCharacteristic(readChar);
   newService.addCharacteristic(writeChar);
@@ -72,7 +72,7 @@ void loop() {
 
   delay(1000);
 
-  // readChar.writeValue(distanceCm);
+  readChar.writeValue(distanceCm);
 
   // if (writeChar.written()) {
   //   if (writeChar.value()) {
