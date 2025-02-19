@@ -22,7 +22,7 @@ void setup() {
     while(1);
   }
 
-  BLE.setLocalName("VJP");
+  BLE.setLocalName("Test");
   BLE.setAdvertisedService(newService);
   newService.addCharacteristic(readChar);
   newService.addCharacteristic(writeChar);
@@ -46,10 +46,10 @@ void loop() {
     
     digitalWrite(LED_BUILTIN, HIGH); // turn on the LED to indicate the connection
 
-    // while (central.connected()) { // while the central is connected:
+    while (central.connected()) { // while the central is connected:
       long currentMillis = millis();
       
-      // if (currentMillis - previousMillis >= 200) { 
+      if (currentMillis - previousMillis >= 200) { 
         previousMillis = currentMillis;
 
         digitalWrite(trigPin, LOW);
@@ -65,11 +65,16 @@ void loop() {
         Serial.print(distanceCm);
         Serial.println(" cm");
 
-        delay(100);
-        readChar.writeValue(distanceCm);
+        delay(10);
+        if (writeChar.written()){
+          if (writeChar.value()){
+            readChar.writeValue(distanceCm);
+          }
+        }
+       
         Serial.println("Distance printed to peripheral");
-      // }
-    // }
+      }
+    }
 
     Serial.print("Disconnected from central: ");
     Serial.println(central.address());
